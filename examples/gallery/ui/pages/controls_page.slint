@@ -7,44 +7,44 @@ import { GallerySettings } from "../gallery_settings.slint";
 import { Page } from "page.slint";
 
 export component ControlsPage inherits Page {
-    title: "Controls";
-    description: "This page gives an overview of the default widget set provided by Slint. The widgets are available in different styles native, fluent-(dark/light) and material-(dark/light). The widgets can be imported from \"std-widgets.slint\".";
+    title: @tr("Controls");
+    description: @tr("This page gives an overview of the default widget set provided by Slint. The widgets are available in different styles native, fluent-(dark/light) and material-(dark/light). The widgets can be imported from \"std-widgets.slint\".");
 
-    GroupBox { 
+    GroupBox {
         vertical-stretch: 0;
-        title: "Buttons";
+        title: @tr("Buttons");
 
-        HorizontalLayout {  
+        HorizontalLayout {
             spacing: 8px;
             alignment: start;
 
             Button {
-                text: "Regular Button";
+                text: @tr("Regular Button");
                 enabled: !GallerySettings.widgets-disabled;
-            }   
+            }
 
             Button {
-                text: "Button with Icon";
+                text: @tr("Button with Icon");
                 icon: @image-url("../../thumbsup.png");
                 enabled: !GallerySettings.widgets-disabled;
             }
 
             Button {
                 checkable: true;
-                text: self.checked ? "ON" : "OFF";
+                text: self.checked ? @tr("ON") : @tr("OFF");
                 enabled: !GallerySettings.widgets-disabled;
             }
         }
     }
 
     GroupBox {
-        title: "CheckBox - SpinBox - ComboBox";
+        title: @tr("CheckBox - SpinBox - ComboBox");
         vertical-stretch: 0;
 
         HorizontalBox {
             alignment: start;
             checkbox := CheckBox {
-                text: checkbox.checked ? "(checked)" : "(unchecked)";
+                text: checkbox.checked ? @tr("(checked)") : @tr("(unchecked)");
                 checked: true;
                 enabled: !GallerySettings.widgets-disabled;
             }
@@ -57,26 +57,26 @@ export component ControlsPage inherits Page {
         }
 
             ComboBox {
-                model: ["Select Something", "From this", "Combobox"];
+                model: [@tr("Select Something"), @tr("From this"), @tr("Combobox")];
                 enabled: !GallerySettings.widgets-disabled;
             }
         }
-                    
-        
+
+
     }
 
-    GroupBox {  
-        title: "LineEdit";
+    GroupBox {
+        title: @tr("LineEdit");
         vertical-stretch: 0;
 
         LineEdit {
-            placeholder-text: "Enter some text";
+            placeholder-text: @tr("Enter some text");
             enabled: !GallerySettings.widgets-disabled;
         }
     }
 
-    GroupBox {  
-        title: "Slider";
+    GroupBox {
+        title: @tr("Slider");
         vertical-stretch: 0;
 
         Slider {
@@ -88,24 +88,24 @@ export component ControlsPage inherits Page {
         }
     }
 
-    GroupBox {  
-        title: "TabWidget";
-        
-        TabWidget {  
-            Tab {
-                title: "Tab 1";
+    GroupBox {
+        title: @tr("TabWidget");
 
-                VerticalBox {  
+        TabWidget {
+            Tab {
+                title: @tr("Tab 1");
+
+                VerticalBox {
                     alignment: start;
 
-                    GroupBox {  
-                        title: "Content of tab 1";
+                    GroupBox {
+                        title: @tr("Content of tab 1");
 
-                        HorizontalBox {  
+                        HorizontalBox {
                             alignment: start;
-                        
-                            Button {  
-                                text: "Click me";
+
+                            Button {
+                                text: @tr("Click me");
                                 enabled: !GallerySettings.widgets-disabled;
                             }
                         }
@@ -114,35 +114,35 @@ export component ControlsPage inherits Page {
             }
 
             Tab {
-                title: "Tab 2";
+                title: @tr("Tab 2");
 
-                VerticalBox {  
+                VerticalBox {
                     alignment: start;
 
-                    GroupBox {  
-                        title: "Content of tab 2";
+                    GroupBox {
+                        title: @tr("Content of tab 2");
 
-                        VerticalBox {  
+                        VerticalBox {
                             alignment: start;
-                        
-                            CheckBox {  
-                                text: "Check me";
+
+                            CheckBox {
+                                text: @tr("Check me");
                                 enabled: !GallerySettings.widgets-disabled;
                             }
                         }
                     }
-                }   
+                }
             }
 
             Tab {
-                title: "Tab 3";
+                title: @tr("Tab 3");
 
-                VerticalBox {  
+                VerticalBox {
                     Text {
-                        text: "Content of tab 3";
+                        text: @tr("Content of tab 3");
                     }
                 }
             }
-        }  
+        }
     }
 }
