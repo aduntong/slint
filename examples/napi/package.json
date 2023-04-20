@@ -1,0 +1,11 @@
+{
+    "name": "napi-demo",
+    "version": "1.0.1",
+    "main": "main.js",
+    "dependencies": {
+        "slint-ui": "../../api/napi"
+    },
+    "scripts": {
+        "start": "node ."
+    }
+}
