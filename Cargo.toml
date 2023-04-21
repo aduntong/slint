@@ -53,6 +53,7 @@ members = [
     'tools/lsp',
     'tools/updater',
     'tools/viewer',
+    'tools/extract-strings',
     'xtask',
 ]
 
