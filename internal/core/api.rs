@@ -463,6 +463,9 @@ impl Window {
                     ..Default::default()
                 })
             }
+            crate::platform::WindowEvent::ScaleFactorChanged { scale_factor } => {
+                self.0.set_scale_factor(scale_factor);
+            }
         }
     }
 

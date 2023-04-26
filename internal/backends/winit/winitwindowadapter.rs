@@ -622,7 +622,9 @@ impl<Renderer: WinitCompatibleRenderer + 'static> WindowAdapterSealed
             )?;
 
             let scale_factor = scale_factor_override.unwrap_or_else(|| winit_window.scale_factor());
-            WindowInner::from_pub(&self_.window).set_scale_factor(scale_factor as _);
+            self_.window.dispatch_event(corelib::platform::WindowEvent::ScaleFactorChanged {
+                scale_factor: scale_factor as _,
+            });
             let s = winit_window.inner_size().to_logical(scale_factor);
             // Make sure that the window's inner size is in sync with the root window item's
             // width/height.

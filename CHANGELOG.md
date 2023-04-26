@@ -6,6 +6,7 @@ All notable changes to this project are documented in this file.
 ### Rust
 
 - Added `slint::Image::load_from_svg_data(buffer: &[u8])` to load SVGs from memory.
+- Added `slint::platform::WindowEvent::ScaleFactorChanged` to allow backends to report the current window scale factor.
 
 ## [1.0.2] - 2023-04-26
 
