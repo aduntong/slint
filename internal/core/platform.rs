@@ -272,6 +272,8 @@ pub enum WindowEvent {
     /// The window's scale factor has changed. This can happen for example when the display's resolution
     /// changes, the user selects a new scale factor in the system settings, or the window is moved to a
     /// different screen.
+    /// Platform implementations should dispatch this event also right after the initial window creation,
+    /// to set the initial scale factor the windowing system provided for the window.
     ScaleFactorChanged {
         /// The window system provided scale factor to map logical pixels to physical pixels.
         scale_factor: f32,
