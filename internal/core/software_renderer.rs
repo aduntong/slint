@@ -309,9 +309,30 @@ impl Renderer for SoftwareRenderer {
 
     fn text_input_byte_offset_for_position(
         &self,
-        _text_input: Pin<&crate::items::TextInput>,
-        _pos: LogicalPoint,
+        text_input: Pin<&crate::items::TextInput>,
+        pos: LogicalPoint,
     ) -> usize {
+        let window_adapter = match self.window.upgrade() {
+            Some(window) => window,
+            None => return 0,
+        };
+
+        let window = WindowInner::from_pub(window_adapter.window());
+
+        let scale_factor = ScaleFactor::new(window.scale_factor());
+
+        let max_width = text_input.width() * scale_factor;
+        let max_height = text_input.height() * scale_factor;
+        let pos = pos * scale_factor;
+
+        if max_width.get() <= 0. || max_height.get() <= 0. {
+            return 0;
+        }
+
+        let visual_representation = text_input.visual_representation(None);
+
+        let font_request = text_input.font_request(&window_adapter);
+
         0
     }
     fn text_input_cursor_rect_for_byte_offset(
