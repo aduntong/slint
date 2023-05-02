@@ -333,6 +333,40 @@ impl Renderer for SoftwareRenderer {
 
         let font_request = text_input.font_request(&window_adapter);
 
+        let font = fonts::match_font(&font_request,scale_factor);
+
+        match font {
+            fonts::Font::PixelFont(pf) => {
+                let paragraph = TextParagraphLayout {
+                    string: &visual_representation.text,
+                    layout: fonts::text_layout_for_font(&pf, &font_request, scale_factor),
+                    max_width: max_width.cast::<i16>(),
+                    max_height: max_height.cast::<i16>(),
+                    horizontal_alignment: text_input.horizontal_alignment(),
+                    vertical_alignment: text_input.vertical_alignment(),
+                    wrap: text_input.wrap(),
+                    overflow: TextOverflow::Clip,
+                    single_line: text_input.single_line(),
+                };
+
+
+            }
+            #[cfg(feature = "software-renderer-systemfonts")]
+            fonts::Font::VectorFont(vf) => {
+                let paragraph = TextParagraphLayout {
+                    string: &visual_representation.text,
+                    layout: fonts::text_layout_for_font(&vf, &font_request, scale_factor),
+                    max_width: max_width.cast::<i16>(),
+                    max_height: max_height.cast::<i16>(),
+                    horizontal_alignment: text_input.horizontal_alignment(),
+                    vertical_alignment: text_input.vertical_alignment(),
+                    wrap: text_input.wrap(),
+                    overflow: TextOverflow::Clip,
+                    single_line: text_input.single_line(),
+                };
+            }
+        }
+
         0
     }
     fn text_input_cursor_rect_for_byte_offset(
