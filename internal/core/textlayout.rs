@@ -219,6 +219,20 @@ impl<'a, Font: AbstractFont> TextParagraphLayout<'a, Font> {
 
         Ok(baseline_y)
     }
+
+    pub fn get_glyph_position_at_coordinate(
+        &self,
+        position: impl Into<euclid::Point2D<f32, crate::lengths::PhysicalPx>>,
+    ) -> i32 {
+        self.layout_lines::<()>(|glyphs, line_x, line_y| {
+            // get glyph position
+
+            core::ops::ControlFlow::Continue(())
+        })
+        .ok();
+
+        0
+    }
 }
 
 #[test]

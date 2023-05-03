@@ -333,7 +333,8 @@ impl Renderer for SoftwareRenderer {
 
         let font_request = text_input.font_request(&window_adapter);
 
-        let font = fonts::match_font(&font_request,scale_factor);
+        let font = fonts::match_font(&font_request, scale_factor);
+        // let offset = text_input.current_state.offset.to_vector().cast() * self.scale_factor;
 
         match font {
             fonts::Font::PixelFont(pf) => {
@@ -349,7 +350,11 @@ impl Renderer for SoftwareRenderer {
                     single_line: text_input.single_line(),
                 };
 
+                // paragraph.layout_lines(|glyphs, line_x, line_y| {
+                //     // get glyph position
 
+                //     core::ops::ControlFlow::Continue(())
+                // });
             }
             #[cfg(feature = "software-renderer-systemfonts")]
             fonts::Font::VectorFont(vf) => {
@@ -364,6 +369,8 @@ impl Renderer for SoftwareRenderer {
                     overflow: TextOverflow::Clip,
                     single_line: text_input.single_line(),
                 };
+
+                let utf16_index = paragraph.get_glyph_position_at_coordinate((pos.x, pos.y - l));
             }
         }
 
